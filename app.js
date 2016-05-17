@@ -25,7 +25,9 @@ var mathAnswerRoutes = require("./routes/math/answer"),
     historyRoutes = require("./routes/history/history");
 
 
-mongoose.connect("mongodb://localhost/homeworkhelp_v8");
+//mongoose.connect("mongodb://localhost/homeworkhelp_v8"); 
+mongoose.connect("mongodb://gilberthoop:xiavER005@ds051625.mlab.com:51625/homeworkhelp");
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
