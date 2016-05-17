@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Sign up to Homework Help</title>
+        <% include ./partials/head %>
+    </head>
+    <body>
+        <% include ./partials/header %>
+        <div class="container">
+            <header class="jumbotron" style="text-align:center">
+                <div class="container">
+                    <h1>Register</h1><br>
+                    <form action="/register" method="POST">
+                        <input type="text" name="username" placeholder="username"><br><br>
+                        <input type="password" name="password" placeholder="password"><br><br>
+                        <button>Sign Up</button>
+                    </form>
+                </div>
+            </header>
+        </div>
+        <% include ./partials/footer %>
+    </body>
+</html>
+ 
+
+

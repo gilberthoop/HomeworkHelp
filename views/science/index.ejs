@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Science Questions</title>
+        <% include ../partials/head %>
+    </head>
+    <body>
+        <% include ../partials/header %>
+
+        <div class="container"> 
+            <header id="science-index" class="jumbotron">
+                <div class="container">
+                    <h1>Welcome to the Science page</h1>
+                    <p>View the questions</p>
+                    <p>
+                        <a class="btn btn-primary btn-large" href="/science/new">Post a new question</a>
+                    </p>
+                </div>
+            </header> 
+            
+            <div class="row" style="display:flex; flex-wrap:wrap;">
+                <% science.forEach(function(science){ %>
+                    <div class="col-md-2 col-sm-1">
+                        <div class="thumbnail">
+                            <a href="/science/<%= science._id %>" class="btn btn-primary" style="width:100%">
+                                <%- science.title.substring(0, 20) %>...
+                            </a>
+                            <span><%= science.create.toDateString() %></span>
+                        </div> 
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+         
+        <% include ../partials/footer %>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+ <head>
+  <title><%= history.title %></title>
+  <% include ../partials/head %>
+ </head>
+ <body>
+  <% include ../partials/header %>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-3">
+              <p class="lead">Homework Help</p>
+              <div class="list-group">
+                  <li class="list-group-item"><a href="/math">View all Math questions</a></li>
+                  <li class="list-group-item"><a href="/science">View all Science questions</a></li>
+                  <li class="list-group-item active"><a style="color:white" href="/history">View all History questions</a></li>
+              </div>
+          </div>
+          <div class="col-md-9">
+              <div class="thumbnail"> 
+                  <div class="caption-full"> 
+                      <h4><a><%= history.title %></a></h4>
+                      <p><%= history.question %></p>
+                      <p>
+                        <em>
+                          Submitted by: <strong><%= history.author.username %></strong>
+                           on <%= history.create.toDateString() %>
+                        </em> 
+                      </p>
+                      <% if(currentUser && history.author.id.equals(currentUser._id)) { %>
+                          <a class="btn btn-xs btn-warning" href="/history/<%= history._id %>/edit">Edit</a>
+                          <form id="delete-form" action="/history/<%= history._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                          </form>
+                      <% } %>
+                  </div>
+              </div>
+              <div class="well">
+                  <div class="text-right">
+                      <a class="btn btn-success" href="/history/<%= history._id %>/answers/history/new">Add New Answer</a>
+                  </div>
+                  <hr>
+                  <% history.answers.forEach(function(answer){ %>
+                       <div class="row">
+                           <div class="col-md-12">
+                               <strong><%= answer.author.username %></strong>
+                               <span class="pull-right"><%= answer.create.toDateString() %></span>
+                               <p>
+                                   <%= answer.text %>
+                               </p>
+                               <% if(currentUser && answer.author.id.equals(currentUser._id)) { %>
+                                  <a class="btn btn-xs btn-warning" href="/history/<%=history._id%>/answers/history/<%=answer._id %>/edit">
+                                   Edit
+                                  </a>
+                                  <form id="delete-form" action="/history/<%=history._id%>/answers/history/<%=answer._id%>?_method=DELETE" method="POST">
+                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                  </form>
+                               <% } %>
+                           </div>
+                       </div>
+                  <% }) %>
+              </div>
+          </div>
+      </div>
+  </div>
+  <% include ../partials/footer %>
+ </body>
+</html>

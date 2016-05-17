@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Edit Math Question</title>
+        <% include ../partials/head %>
+    </head>
+    <body>
+        <% include ../partials/header %>
+        <div class="container">
+            <div class="row">
+                <h1 style="text-align:center">Edit <%= math.title %></h1>
+                <div style="width:30% margin:25px auto;">
+                    <form action="/math/<%= math._id %>?_method=PUT" method="POST">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="math[title]" value="<%= math.title %>">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="math[question]" value="<%= math.question %>">
+                        </div>
+                        <div class="form-group">
+                             <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                        </div>
+                    </form>
+                    <a href="/math">Go Back</a>
+                </div>
+            </div>
+        </div>
+        <% include ../partials/footer %>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Math Questions</title>
+        <% include ../partials/head %>
+    </head>
+    <body>
+        <% include ../partials/header %>
+    
+        <div class="container"> 
+            <header id="math-index" class="jumbotron"> 
+                <div class="container">
+                    <h1>Welcome to the Math page</h1>
+                    <p>View the questions</p>
+                    <p>
+                        <a class="btn btn-primary btn-large" href="/math/new">Post a new question</a>
+                    </p>
+                </div>
+            </header> 
+            
+            <div class="row" style="display:flex; flex-wrap:wrap;">
+                <% math.forEach(function(math){ %>
+                    <div class="col-md-2 col-sm-1">
+                        <div class="thumbnail">
+                            <a href="/math/<%= math._id %>" class="btn btn-primary" style="width:100%">
+                                <%- math.title.substring(0, 20) %>...
+                            </a>
+                            <span><%= math.create.toDateString() %></span>
+                        </div> 
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+         
+        <% include ../partials/footer %>
+    </body>
+</html>
+
+    
