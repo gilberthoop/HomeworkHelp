@@ -26,8 +26,6 @@ var mathAnswerRoutes = require("./routes/math/answer"),
 
 
 mongoose.connect(process.env.DATABASEURL); 
-//mongoose.connect("mongodb://gilberthoop:xiavER005@ds051625.mlab.com:51625/homeworkhelp");
-
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
