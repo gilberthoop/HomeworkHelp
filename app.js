@@ -25,7 +25,8 @@ var mathAnswerRoutes = require("./routes/math/answer"),
     historyRoutes = require("./routes/history/history");
 
 
-mongoose.connect(process.env.DATABASEURL); 
+var url = process.env.DATABASEURL || "mongodb://localhost/homeworkhelp_v8";
+mongoose.connect(url); 
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
