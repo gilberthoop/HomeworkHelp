@@ -2,12 +2,23 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
+var request = require("request");
 
 
 // root route
-router.get("/", function(req, res) {
-    res.render("home");
+router.get("/", function(req, res) { 
+    res.render("home"); 
 });
+
+
+
+
+    // request("https://publish.twitter.com/oembed?url=https%3A%2Ftwitter.com%2FStackOverflow%2Fstatus%2F756066231376052225", function(error, response, body) {
+    //     if(!error && response.statusCode == 200) {
+    //         var data = JSON.parse(body)
+    //         res.render("home", {data: data});
+    //     }
+    // }); 
 
 
 // =================================
@@ -54,6 +65,6 @@ router.get("/logout", function(req, res) {
     res.redirect("/");
 });
 
- 
+
  
 module.exports = router;

@@ -1,5 +1,5 @@
 var express     = require("express"),
-    app         = express(),
+    app         = express(), 
     bodyParser  = require("body-parser"),
     mongoose    = require("mongoose"),
     flash       = require("connect-flash"),
@@ -57,6 +57,7 @@ app.use(function(req, res, next){
 });
 
 
+// ROUTES
 app.use("/", indexRoutes);
 
 app.use("/math", mathRoutes);
@@ -67,6 +68,13 @@ app.use("/science/:id/answers/science", scienceAnswerRoutes);
 
 app.use("/history", historyRoutes);
 app.use("/history/:id/answers/history", historyAnswerRoutes);
+
+
+
+// default route - show error page message
+app.get("*", function(req, res) {
+    res.render("error/error");
+});
 
  
  

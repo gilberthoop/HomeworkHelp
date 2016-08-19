@@ -92,6 +92,7 @@ router.delete("/:id", middleware.checkHistoryOwnership, function(req, res){
         }
     });
 });
+ 
 
 
 module.exports = router;
