@@ -1,21 +1,13 @@
 #gradient {  
-
-
-background: #ECE9E6; /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #ECE9E6 , #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #ECE9E6 , #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-                    
+    background: #ECE9E6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #ECE9E6 , #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #ECE9E6 , #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 body { 
-
-
-
-background: #83a4d4; /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #83a4d4 , #b6fbff); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #83a4d4 , #b6fbff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        
-           
+    background: #83a4d4; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #83a4d4 , #b6fbff); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #83a4d4 , #b6fbff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .thumbnail img {
@@ -30,12 +22,7 @@ background: linear-gradient(to left, #83a4d4 , #b6fbff); /* W3C, IE 10+/ Edge, F
     padding: 9px;
 }
 
-#delete-form {
-    display: inline;
-}
-
-.footer {
-    position:fixed;
+.footer { 
     bottom:0; 
     width:100%;
     display:block;
@@ -48,28 +35,38 @@ background: linear-gradient(to left, #83a4d4 , #b6fbff); /* W3C, IE 10+/ Edge, F
     margin: auto;
 }
 
-#index-page {
-    background-image: url("http://66.media.tumblr.com/0922c96e7eff908c078431f377a444ff/tumblr_nuk2buvBkp1uzx644o1_500.jpg");
-    background-size: 1150px 540px;
-    text-align: center;
+.index-page {
+    background-image: url("../images/homework.jpg");
+    background-size: cover;
+    text-align: center; 
 }
 
+#welcome {
+    font-size: 55px;
+    font-weight: bold;
+    color: #000000;
+}
+
+#delete-form {
+    display: inline;
+} 
+
 #math-index {
-    background-image: url("http://media.gettyimages.com/photos/maths-teacher-uses-his-white-board-to-explain-a-sum-to-pupils-king-picture-id72090240");
+    background-image: url("../images/math.jpg");
     background-size: cover;
     color: white;
     text-align: center;
 }
 
 #science-index {
-    background-image: url("http://www.bumc.bu.edu/gms/files/2015/10/BME1.jpg");
+    background-image: url("../images/science.jpg");
     background-size: cover;
     color: white;
     text-align: center;
 }
 
 #history-index {
-    background-image: url("http://download.4-designer.com/files/20121226/Roman-Colosseum--35044.jpg");
+    background-image: url("../images/history.jpg");
     background-size: cover;
     color: white;
     text-align: center; 
