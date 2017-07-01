@@ -13,16 +13,18 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/math">Math</a></li>
-                        <li><a href="/science">Science</a></li>
-                        <li><a href="/history">History</a></li>
+                        <li><a href="/"><i class="fa fa-home fa-fw"></i>&nbsp; Home</a></li>
+                        <li><a href="/math"><i class="fa fa-calculator fa-fw"></i>&nbsp; Math</a></li>
+                        <li><a href="/science"><i class="fa fa-flask fa-fw"></i>&nbsp; Science</a></li>
+                        <li><a href="/history"><i class="fa fa-history fa-fw"></i>&nbsp; History</a></li>
                         <% if(!currentUser) { %>
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/register">Sign up</a></li>
+                            <li><a href="/login"><i class="fa fa-sign-in fa-fw"></i>&nbsp; Login</a></li>
+                            <li><a href="/register"><i class="fa fa-address-card-o fa-fw"></i>&nbsp; Sign up</a></li>
                         <% } else { %>
-                            <li><a href="#">Signed in as <%= currentUser.username %></a></li>
-                            <li><a href="/logout">Logout</a></li>
+                            <li><a href="#">
+                                <i class="fa fa-user-circle-o fa-fw"></i>&nbsp; Signed in as <%= currentUser.username %></a>
+                            </li>
+                            <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i>&nbsp; Logout</a></li>
                         <% } %>
                     </ul>
                 </div>
