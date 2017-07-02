@@ -38,7 +38,7 @@ router.post("/register", function(req, res) {
             var errMessage = err.message + ". Please choose a new username";
             req.flash("error", errMessage); 
             res.redirect("/register");
-            return res.render("register");
+            //return res.render("register"); - Might cause error
         }
         passport.authenticate("local")(req, res, function() {
             req.flash("success", "Welcome to Homework Help, " + user.username);
