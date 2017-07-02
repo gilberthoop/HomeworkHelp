@@ -40,7 +40,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
                     answer.save();
                     history.answers.push(answer);
                     history.save();
-                    req.flash("success", "COMMENT ADDED");
+                    req.flash("success", "Comment added!");
                     res.redirect("/history/" + history._id);
                 }
             });
@@ -67,7 +67,7 @@ router.put("/:answer_id", middleware.checkAnswerOwnership, function(req, res) {
         if(err) {
             res.redirect("back");
         } else {
-            req.flash("success", "COMMENT CHANGED");
+            req.flash("success", "Comment changed!");
             res.redirect("/history/" + req.params.id);
         }
     });
@@ -80,7 +80,7 @@ router.delete("/:answer_id", middleware.checkAnswerOwnership, function(req, res)
         if(err) {
             res.redirect("back");
         } else {
-            req.flash("success", "COMMENT DELETED");
+            req.flash("success", "Comment deleted!");
             res.redirect("/history/" + req.params.id);
         }
     });

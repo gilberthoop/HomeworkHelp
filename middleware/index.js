@@ -12,20 +12,20 @@ middlewareObj.checkMathOwnership = function(req, res, next) {
     if(req.isAuthenticated()) {
         Math.findById(req.params.id, function(err, foundMath){
             if(err) {
-                req.flash("error", "MATH QUESTION NOT FOUND");
+                req.flash("error", "Math question not found!");
                 res.redirect("/math");
             } else {
                 // check ownership
                 if(foundMath.author.id.equals(req.user._id)) {
                     next();
                 } else {
-                    req.flash("error", "ACCESS DENIED");
+                    req.flash("error", "Access denied!")
                     res.redirect("back");
                 }
             }
         });
     } else {
-        req.flash("error", "LOG IN IS REQUIRED");
+        req.flash("error", "Log in is required");
         res.redirect("back");
     }
 }
@@ -35,20 +35,20 @@ middlewareObj.checkScienceOwnership = function(req, res, next) {
     if(req.isAuthenticated()) {
         Science.findById(req.params.id, function(err, foundSci) {
             if(err) {
-                req.flash("error", "SCIENCE QUESTION NOT FOUND");
+                req.flash("error", "Science question not found!");
                 res.redirect("/science");
             } else {
                 // check ownership
                 if(foundSci.author.id.equals(req.user._id)) {
                     next();
                 } else {
-                    req.flash("error", "ACCESS DENIED");
+                    req.flash("error", "Access denied!")
                     res.redirect("back");
                 }
             }
         });
     } else {
-        req.flash("error", "LOG IN IS REQUIRED");
+        req.flash("error", "Log in is required");
         res.redirect("back");
     }
 }
@@ -59,20 +59,20 @@ middlewareObj.checkHistoryOwnership = function(req, res, next) {
     if(req.isAuthenticated()) {
         History.findById(req.params.id, function(err, foundHist) {
             if(err) {
-                req.flash("error", "HISTORY QUESTION NOT FOUND");
+                req.flash("error", "History question not found!");
                 res.redirect("/history");
             } else {
                 // check ownership
                 if(foundHist.author.id.equals(req.user._id)) {
                     next();
                 } else {
-                    req.flash("erro", "ACCESS DENITED");
+                    req.flash("error", "Access denied!")
                     res.redirect("back");
                 }
             }
         });
     } else {
-        req.flash("error", "LOG IN IS REQUIRED");
+        req.flash("error", "Log in is required");
         res.redirect("back");
     }
 }
@@ -89,13 +89,13 @@ middlewareObj.checkAnswerOwnership = function(req, res, next) {
                 if(foundAnswer.author.id.equals(req.user._id)) {
                     next();
                 } else {
-                    req.flash("error", "ACCESS DENIED");
+                    req.flash("error", "Access denied!")
                     res.redirect("back");
                 }
             }
         });
     } else {
-        req.flash("error", "LOG IN IS REQUIRED");
+        req.flash("error", "Log in is required");
         res.redirect("back");
     }
 }
@@ -105,7 +105,7 @@ middlewareObj.isLoggedIn = function (req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-    req.flash("error", "LOG IN IS REQUIRED");
+    req.flash("error", "Log in is required");
     res.redirect("/login");   
 }
 
