@@ -12,8 +12,10 @@ var middleware = require("../../middleware");
 // NEW
 router.get("/new", middleware.isLoggedIn, function(req, res) {
     Math.findById(req.params.id, function(err, math) {
-        if(err){
+        console.log(req.params.id);
+        if(err || math === null) {
             console.log(err);
+            res.render("error/error");
         } else{
             res.render("answers/math/new", {math:math})
         }
@@ -24,13 +26,13 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 // CREATE
 router.post("/", middleware.isLoggedIn, function(req, res) {
     Math.findById(req.params.id, function(err, math) {
-        if(err){
-            console.log(err);
+        if(err || math === null){
+            console.log(err || math === null);
             res.redirect("math");
         } else{
             Answer.create(req.body.answer, function(err, answer) {
-                if(err){
-                    req.flash("error", "OOOPS... Something went wrong");
+                if(err || answer === null){
+                    res.render("error/error");
                     console.log(err);
                 } else{
                     // add username and id to the answer
@@ -52,8 +54,9 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 // EDIT math answer
 router.get("/:answer_id/edit", middleware.checkAnswerOwnership, function(req, res) {
     Answer.findById(req.params.answer_id, function(err, foundAnswer) {
-        if(err){
-            res.redirect("back");
+        if(err || foundAnswer === null){
+            //res.redirect("back");
+            res.render("error/error")
         } else{
             res.render("answers/math/edit", {math_id: req.params.id, answer: foundAnswer});
         }
@@ -64,8 +67,9 @@ router.get("/:answer_id/edit", middleware.checkAnswerOwnership, function(req, re
 // UPDATE math answer
 router.put("/:answer_id", middleware.checkAnswerOwnership, function(req, res) {
     Answer.findByIdAndUpdate(req.params.answer_id, req.body.answer, function(err, updatedAnswer) {
-        if(err){
-            res.redirect("back");
+        if(err || updatedAnswer === null){
+            //res.redirect("back");
+            res.render("error/error")
         } else{
             req.flash("success", "Comment changed!");
             res.redirect("/math/" + req.params.id);
@@ -78,7 +82,8 @@ router.put("/:answer_id", middleware.checkAnswerOwnership, function(req, res) {
 router.delete("/:answer_id", middleware.checkAnswerOwnership, function(req, res) {
     Answer.findByIdAndRemove(req.params.answer_id, function(err) {
         if(err){
-            res.redirect("back");
+            //res.redirect("back");
+            res.render("error/error")
         } else{
             req.flash("success", "Comment deleted!");
             res.redirect("/math/" + req.params.id);

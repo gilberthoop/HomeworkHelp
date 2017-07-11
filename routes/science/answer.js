@@ -14,6 +14,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
     Science.findById(req.params.id, function(err, science) {
         if(err){
             console.log(err);
+            res.render("error/error");
         } else{
             res.render("answers/science/new", {science:science})
         }
@@ -24,13 +25,13 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 // CREATE
 router.post("/", middleware.isLoggedIn, function(req, res) {
     Science.findById(req.params.id, function(err, science) {
-        if(err){
+        if(err || science === null){
             console.log(err);
             res.redirect("science");
         } else{
             Answer.create(req.body.answer, function(err, answer) {
                 if(err){
-                    req.flash("error", "OOOPS... Something went wrong");
+                    res.render("error/error");
                     console.log(err);
                 } else{
                     // add username and id to the answer

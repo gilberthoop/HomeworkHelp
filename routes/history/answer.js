@@ -14,6 +14,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
     History.findById(req.params.id, function(err, history) {
         if(err){
             console.log(err);
+            res.render("error/error");
         } else{
             res.render("answers/history/new", {history:history});
         }
@@ -30,7 +31,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
         } else{
             Answer.create(req.body.answer, function(err, answer) {
                 if(err){
-                    req.flash("error", "OOOPS... Something went wrong");
+                    res.render("error/error");
                     console.log(err);
                 } else{
                     // add username and id to answer

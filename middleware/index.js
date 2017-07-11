@@ -125,7 +125,8 @@ middlewareObj.checkAnswerOwnership = function(req, res, next) {
     if(req.isAuthenticated()) {
         Answer.findById(req.params.answer_id, function(err, foundAnswer) {
             if(err || foundAnswer === null) {
-                res.redirect("back");
+                //res.redirect("back");
+                res.render("error/error")
             } else {
                 // check ownership
                 if(foundAnswer.author.id.equals(req.user._id)) {
