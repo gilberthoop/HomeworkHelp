@@ -9,8 +9,9 @@ var middleware = require("../../middleware");
 router.get("/", function(req, res) {
     // get all math questions from db
     Math.find({}, function(err, allmath){
-        if(err){
+        if(err || allmath === null){
             console.log(err);
+            res.render("error/error");
         } else{
             res.render("math/index", {
                 math: allmath,
@@ -35,11 +36,19 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
         id: req.user._id,
         username: req.user.username
     };
-    var newMath = { title:title, question:question, author:author };
+    
+    // Check if the title, question, and author is not null
+    if(req != null) {
+        var newMath = { title:title, question:question, author:author };
+    } else {
+        res.render("error/error");
+    }
+    
     // create a new question and save to db
     Math.create(newMath, function(err, newlyCreated) {
         if(err){
             console.log(err);
+            res.render("error/error");
         } else{
             res.redirect("/math");
         }
@@ -49,11 +58,12 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 
 
 // SHOW - shows more info about the question
-router.get("/:id", function(req, res) {
+router.get("/:id", middleware.checkMathQuestion, function(req, res) {
     // find the question with id
     Math.findById(req.params.id).populate("answers").exec(function(err,foundMath){
         if(err){
             console.log(err);
+            res.render("error/error");
         } else{
             res.render("math/show", {math:foundMath});
         }
@@ -64,7 +74,11 @@ router.get("/:id", function(req, res) {
 // EDIT math question
 router.get("/:id/edit", middleware.checkMathOwnership, function(req, res) {
     Math.findById(req.params.id, function(err, foundMath) {
-        res.render("math/edit", {math: foundMath});
+        if(err) {
+            res.render("error/error");
+        } else {
+            res.render("math/edit", {math: foundMath});
+        }
     });
 });
 

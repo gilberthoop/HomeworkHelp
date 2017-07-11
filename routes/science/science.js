@@ -49,7 +49,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 
 
 // SHOW - shows more info about the question
-router.get("/:id", function(req, res) {
+router.get("/:id", middleware.checkScienceQuestion, function(req, res) {
     // find the question with id
     Science.findById(req.params.id).populate("answers").exec(function(err,foundScience){
         if(err){

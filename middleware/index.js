@@ -7,15 +7,28 @@ var Answer = require("../models/answer");
 var middlewareObj = {};
 
 
+// Math question SHOW validation
+middlewareObj.checkMathQuestion = function(req, res, next) {
+    // Check if the Math question exists
+    Math.findById(req.params.id, function(err, foundMath) {
+        if(err || foundMath === null) {
+            req.flash("error", "Math question not found!");
+            res.redirect("/math");
+        } else{
+            next();
+        }
+    });
+}
+// Math question EDIT & DELETEclear validation/auth
 middlewareObj.checkMathOwnership = function(req, res, next) {
     // check if user is logged in
     if(req.isAuthenticated()) {
         Math.findById(req.params.id, function(err, foundMath){
-            if(err) {
+            if(err || foundMath === null) {
                 req.flash("error", "Math question not found!");
                 res.redirect("/math");
             } else {
-                // check ownership
+                // check ownership and check if author is not null
                 if(foundMath.author.id.equals(req.user._id)) {
                     next();
                 } else {
@@ -30,11 +43,26 @@ middlewareObj.checkMathOwnership = function(req, res, next) {
     }
 }
 
+
+// Science question SHOW validation
+middlewareObj.checkScienceQuestion = function(req, res, next) {
+    // Check if the Science question exists
+    Science.findById(req.params.id, function(err, foundSci) {
+        if(err || foundSci === null) {
+            req.flash("error", "Science question not found!");
+            res.redirect("/science");
+        }
+        else {
+            next();
+        }
+    });
+}
+// Science question EDIT & DELETE validation/auth
 middlewareObj.checkScienceOwnership = function(req, res, next) {
     // check if user is logged in
     if(req.isAuthenticated()) {
         Science.findById(req.params.id, function(err, foundSci) {
-            if(err) {
+            if(err || foundSci === null) {
                 req.flash("error", "Science question not found!");
                 res.redirect("/science");
             } else {
@@ -54,11 +82,24 @@ middlewareObj.checkScienceOwnership = function(req, res, next) {
 }
 
 
+// History question SHOW validation
+middlewareObj.checkHistoryQuestion = function(req, res, next) {
+    // Check if the History question exists
+    History.findById(req.params.id, function(err, foundHist) {
+       if(err || foundHist === null) {
+            req.flash("error", "History question not found!");
+            res.redirect("/history");
+       } else {
+           next();
+       }
+    });
+}
+// History question EDIT & DELETE validation/auth
 middlewareObj.checkHistoryOwnership = function(req, res, next) {
     // check user log in
     if(req.isAuthenticated()) {
         History.findById(req.params.id, function(err, foundHist) {
-            if(err) {
+            if(err || foundHist === null) {
                 req.flash("error", "History question not found!");
                 res.redirect("/history");
             } else {
@@ -78,11 +119,12 @@ middlewareObj.checkHistoryOwnership = function(req, res, next) {
 }
 
 
+// Answer auth/validation
 middlewareObj.checkAnswerOwnership = function(req, res, next) {
     // check user log in
     if(req.isAuthenticated()) {
         Answer.findById(req.params.answer_id, function(err, foundAnswer) {
-            if(err) {
+            if(err || foundAnswer === null) {
                 res.redirect("back");
             } else {
                 // check ownership

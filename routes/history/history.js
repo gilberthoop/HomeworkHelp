@@ -49,7 +49,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 
 
 // SHOW - shows more info about the q
-router.get("/:id", function(req, res) {
+router.get("/:id", middleware.checkHistoryQuestion, function(req, res) {
     // find the q with id
     History.findById(req.params.id).populate("answers").exec(function(err, foundHistory){
         if(err){
