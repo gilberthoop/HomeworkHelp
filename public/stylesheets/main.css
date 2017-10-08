@@ -37,12 +37,7 @@ body {
     width: 200px;
     height: 200px;
     margin: auto;
-}
-
-.index-page {
-    background-image: url("../images/books.jpg");
-    background-size: cover; 
-}
+} 
 
 #welcome {
     font-size: 40px;
